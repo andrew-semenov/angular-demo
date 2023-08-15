@@ -7,7 +7,11 @@ import { Component } from "@angular/core";
 })
 
 export class PasswordComponent {
-    password: string = ''
+    showPassword = false;
+    passValue: string = ''
+    // password: string = 'password'
+
+    show = false
 
     span1: string = 'gray'
     span2: string = 'gray'
@@ -17,8 +21,20 @@ export class PasswordComponent {
     regExpDigits: RegExp = /[0-9]/
     regExpSymbols: RegExp = /.[`,~,!,@,#,$,%,^,,&,*,(,),_,+,,=,|,-,;,',{,},/,<,>,?]/
 
+    // onInit() {
+    //     this.password = 'password'
+    // }
+
+    // showPassword2() {
+    //     if (this.password === 'password') {
+    //         this.password = 'text'
+    //     } else {
+    //         this.password = 'password'
+    //     }
+    // }
+
     changeHandler(value: any) {
-        this.password = value
+        this.passValue = value
 
         if (value.length >= 8) {
             if (
