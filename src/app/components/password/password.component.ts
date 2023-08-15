@@ -9,7 +9,6 @@ import { Component } from "@angular/core";
 export class PasswordComponent {
     showPassword = false;
     passValue: string = ''
-    // password: string = 'password'
 
     show = false
 
@@ -20,18 +19,6 @@ export class PasswordComponent {
     regExpLetters: RegExp = /[a-zA-Z]/
     regExpDigits: RegExp = /[0-9]/
     regExpSymbols: RegExp = /.[`,~,!,@,#,$,%,^,,&,*,(,),_,+,,=,|,-,;,',{,},/,<,>,?]/
-
-    // onInit() {
-    //     this.password = 'password'
-    // }
-
-    // showPassword2() {
-    //     if (this.password === 'password') {
-    //         this.password = 'text'
-    //     } else {
-    //         this.password = 'password'
-    //     }
-    // }
 
     changeHandler(value: any) {
         this.passValue = value
