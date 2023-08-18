@@ -12,9 +12,9 @@ export class PasswordComponent {
 
     show = false
 
-    span1: string = 'gray'
-    span2: string = 'gray'
-    span3: string = 'gray'
+    span1: string = ''
+    span2: string = ''
+    span3: string = ''
 
     regExpLetters: RegExp = /[a-zA-Z]/
     regExpDigits: RegExp = /[0-9]/
@@ -23,26 +23,23 @@ export class PasswordComponent {
     changeHandler(value: any) {
         this.passValue = value
 
+        const hasDigits = value.match(this.regExpDigits)
+        const hasLetters = value.match(this.regExpLetters)
+        const hasSymbols = value.match(this.regExpSymbols)
+
+        this.span1 = 'gray'
+        this.span2 = 'gray'
+        this.span3 = 'gray'
+
         if (value.length >= 8) {
-            if (
-                value.match(this.regExpDigits) ||
-                value.match(this.regExpLetters) ||
-                value.match(this.regExpSymbols)
-            ) {
+            if (hasDigits || hasLetters || hasSymbols) {
                 this.span1 = 'red'
-                this.span2 = 'gray'
-                this.span3 = 'gray'
             }
-            if (
-                (value.match(this.regExpLetters) && value.match(this.regExpSymbols)) ||
-                (value.match(this.regExpLetters) && value.match(this.regExpDigits)) ||
-                (value.match(this.regExpDigits) && value.match(this.regExpSymbols))
-            ) {
+            if ((hasLetters && hasSymbols) || (hasLetters && hasDigits) || (hasDigits && hasSymbols)) {
                 this.span1 = 'yellow'
                 this.span2 = 'yellow'
-                this.span3 = 'gray'
             }
-            if (value.match(this.regExpDigits) && value.match(this.regExpLetters) && value.match(this.regExpSymbols)) {
+            if (hasDigits && hasLetters && hasSymbols) {
                 this.span1 = 'green'
                 this.span2 = 'green'
                 this.span3 = 'green'
@@ -51,10 +48,6 @@ export class PasswordComponent {
             this.span1 = 'red'
             this.span2 = 'red'
             this.span3 = 'red'
-        } else {
-            this.span1 = 'gray'
-            this.span2 = 'gray'
-            this.span3 = 'gray'
         }
     }
 }
